@@ -230,7 +230,27 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-function charCount(string) {}
+function charCount(string) {
+  let finalObj = {}
+  for (let i = 0; i < string.length; i++) {
+    let count = 0
+    let char = string[i]
+    for (let j = 0; j < string.length; j++) {
+      if (string[i] === string[j]) {
+        count++
+      } else {
+        continue
+      }
+    }
+    const newObject = { [char]: count }
+    finalObj = {
+      ...finalObj,
+      ...newObject
+    }
+    count = 0
+  }
+  return finalObj
+}
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
 
