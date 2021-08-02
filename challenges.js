@@ -12,7 +12,9 @@ Examples:
 sayHello() //=> Hello!
 -----------------------------------------------------------------*/
 // Your solution for 00-sayHello (example) here:
-function sayHello() {}
+function sayHello() {
+  return 'hello!'
+}
 /*-----------------------------------------------------------------
 Challenge: 01-addOne
 
