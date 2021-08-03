@@ -580,7 +580,23 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  let oArr = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      let innerArr = flatten(arr[i])
+
+      for (let j = 0; j < innerArr.length; j++) {
+        oArr.push(innerArr[j])
+      }
+    } else {
+      oArr.push(arr[i])
+    }
+  }
+
+  return oArr
+}
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -641,7 +657,22 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  let primes = []
+
+  if (n <= 1 || n % 1 !== 0) {
+    return []
+  }
+
+  for (let i = 2; i <= n; i++) {
+    while (n % i === 0) {
+      primes.push(i)
+      n /= i
+    }
+  }
+
+  return primes
+}
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -684,7 +715,46 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  //This feels way more complicated than it needs to be, but it works, lol
+  let stack = []
+
+  if (string[0] === `)` || string[0] === `}` || string[0] === `]`) {
+    return false
+  }
+
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === `(` || string[i] === `{` || string[i] === `[`) {
+      stack.push(string[i])
+    } else if (string[i] === `)` || string[i] === `}` || string[i] === `]`) {
+      if (string[i] === `)`) {
+        if (stack[stack.length - 1] !== `(`) {
+          return false
+        } else {
+          stack.pop()
+        }
+      } else if (string[i] === `}`) {
+        if (stack[stack.length - 1] !== `{`) {
+          return false
+        } else {
+          stack.pop()
+        }
+      } else if (string[i] === `]`) {
+        if (stack[stack.length - 1] !== `[`) {
+          return false
+        } else {
+          stack.pop()
+        }
+      }
+    }
+  }
+
+  if (stack.length !== 0) {
+    return false
+  }
+
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
@@ -710,7 +780,27 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  let isWinner = true
+
+  for (let i = 0; i < arr.length; i++) {
+    let winFound = false
+
+    for (let j = 0; j < arr[i][0].length; j++) {
+      if (arr[i][0].charCodeAt(j) === arr[i][1]) {
+        winFound = true
+        break
+      }
+    }
+
+    if (!winFound) {
+      isWinner = false
+      break
+    }
+  }
+
+  return isWinner
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
