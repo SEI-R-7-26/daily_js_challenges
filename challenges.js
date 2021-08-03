@@ -826,7 +826,22 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-function getNumForIP(bits) {}
+function getNumForIP(bits) {
+  let token1 = parseInt(bits.slice(0, bits.indexOf(`.`)))
+  bits = bits.slice(token1.toString().length + 1)
+  let token2 = parseInt(bits.slice(0, bits.indexOf(`.`)))
+  bits = bits.slice(token2.toString().length + 1)
+  let token3 = parseInt(bits.slice(0, bits.indexOf(`.`)))
+  bits = bits.slice(token3.toString().length + 1)
+  let token4 = parseInt(bits)
+
+  return (
+    token4 +
+    token3 * 256 +
+    token2 * Math.pow(256, 2) +
+    token1 * Math.pow(256, 3)
+  )
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
