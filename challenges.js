@@ -866,7 +866,18 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  //this could definitely be better but RegEx are complicated, lol
+  let tokenArr = string.split(/[-_]/g)
+
+  let oStr = tokenArr[0]
+
+  for (let i = 1; i < tokenArr.length; i++) {
+    oStr += tokenArr[i][0].toUpperCase() + tokenArr[i].slice(1)
+  }
+
+  return oStr
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
@@ -892,7 +903,9 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  return (n.toString(2).match(/1/g) || []).length
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
@@ -942,7 +955,17 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
-function addChecker(arr, n) {}
+function addChecker(arr, n) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === n) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
 
