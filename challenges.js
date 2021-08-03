@@ -51,7 +51,10 @@ addTwoNumbers(0, 0) //=> 0
 addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
-function addTwoNumbers(num1, num2) {}
+function addTwoNumbers(num1, num2) {
+  const sum = parseInt(num1) + parseInt(num2)
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 03-sumNumbers
 
