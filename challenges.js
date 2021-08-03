@@ -73,7 +73,12 @@ sumNumbers([2, 10, -5]) //=> 7
 sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
-function sumNumbers(nums) {}
+function sumNumbers(nums) {
+  const sumOfArray = nums.reduce((acc, num) => {
+    return (acc += num)
+  }, 0)
+  return sumOfArray
+}
 /*-----------------------------------------------------------------
 Challenge: 04-addList
 
