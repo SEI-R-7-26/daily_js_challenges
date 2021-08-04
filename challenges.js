@@ -178,12 +178,12 @@ reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES"
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
 function reverseUpcaseString(string) {
-  // return string.split('').reverse().join('').toUpperCase()
-  let reverseStr = ''
-  for (let i = 0; i < string.length; i++) {
-    reverseStr = string[i] + reverseStr //order matters a lot here because only this way allows for the original last char to become the new first char
-  }
-  return reverseStr.toUpperCase()
+  return string.split('').reverse().join('').toUpperCase()
+  // let reverseStr = ''
+  // for (let i = 0; i < string.length; i++) {
+  //   reverseStr = string[i] + reverseStr //order matters a lot here because only this way allows for the original last char to become the new first char
+  // }
+  // return reverseStr.toUpperCase()
 }
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
@@ -201,7 +201,13 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-function removeEnds(string) {}
+function removeEnds(string) {
+  if (string.length < 3) return ''
+  let strArr = string.split("")
+  strArr.pop()
+  strArr.shift()
+  return strArr.join('')
+}
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
 
@@ -220,7 +226,11 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-function charCount(string) {}
+function charCount(string) {
+  let strArr = string.split('')
+  let obj = {}
+  strArr.forEach()
+}
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
 
