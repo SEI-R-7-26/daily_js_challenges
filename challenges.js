@@ -408,7 +408,22 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
+function fromPairs(arr) {
+  // let finalObject = {}
+  // arr.map((innerArray) => {
+  //   const key = innerArray[0]
+  //   return {
+  //     ...finalObject,
+  //     [key]: innerArray[1]
+  //   }
+  // })
+  return arr.reduce((objAcc, arr) => {
+    return {
+      ...objAcc,
+      [arr[0]]: arr[1]
+    }
+  }, {})
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -426,7 +441,22 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, obj2) {
+  let args = Array.from(arguments)
+  let obj3 = args.reduce((objAcc, obj) => {
+    return {
+      ...objAcc,
+      ...obj
+    }
+  }, {})
+  // obj1 = {
+  //   ...obj3
+  // }
+  return {
+    ...obj1,
+    ...obj3
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
