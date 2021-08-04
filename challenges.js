@@ -443,6 +443,8 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c:
 // Your solution for 15-mergeObjects here:
 function mergeObjects(obj1, obj2) {
   let args = Array.from(arguments)
+  args.shift()
+  args.shift()
   let obj3 = args.reduce((objAcc, obj) => {
     return {
       ...objAcc,
@@ -450,13 +452,15 @@ function mergeObjects(obj1, obj2) {
     }
   }, {})
   // obj1 = {
+  //   ...obj1,
+  //   ...obj2,
   //   ...obj3
   // }
-  return {
-    ...obj1,
-    ...obj3
-  }
+  // obj1 = _.merge(obj1, obj2, obj3)
+
+  return Object.assign(obj1, obj2, obj3)
 }
+
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
