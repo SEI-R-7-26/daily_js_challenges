@@ -630,7 +630,21 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n > 1 && Number.isInteger(n)) {
+    if (n < 4) {
+      return true
+    } else {
+      for (let i = 2; i < n; i++) {
+        if (n % i === 0) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+  return false
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
