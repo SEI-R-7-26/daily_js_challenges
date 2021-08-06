@@ -195,7 +195,12 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-function removeEnds(string) {}
+function removeEnds(string) {
+  let stringArray = string.split('')
+  stringArray.pop()
+  stringArray.shift()
+  return stringArray.join('')
+}
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
 
