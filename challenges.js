@@ -147,7 +147,16 @@ range(1,1) //=> []
 range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
-function range(n1, n2) {}
+function range(n1, n2) {
+  if (n1 <= n2) {
+    let newArray = []
+    for (let i = n1, j = 0; i < n2; i++, j++) {
+      newArray[j] = i
+    }
+    return newArray
+  }
+  return 'First argument must be less than second'
+}
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
 
