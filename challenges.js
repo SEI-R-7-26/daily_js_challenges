@@ -259,7 +259,17 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
-function formatWithPadding(n, char, length) {}
+function formatWithPadding(n, char, length) {
+  if (n.length >= length) {
+    return `${n}`
+  } else {
+    let newStr = `${n}`
+    while (newStr.length < length) {
+      newStr = char + newStr
+    }
+    return newStr
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -280,7 +290,21 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-function isPalindrome(string) {}
+function isPalindrome(string) {
+  if (string.length <= 1) {
+    return true
+  } else if (){
+    let strUpperArr = string.toUpperCase().split(' ').join('')
+    let revStrUpperArr = string.toUpperCase().split(' ').reverse().join('')
+    if (strUpperArr === revStrUpperArr) {
+      return true
+    }
+  }
+
+  
+
+
+}
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
