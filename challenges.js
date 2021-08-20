@@ -693,7 +693,21 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let copyArr = arr2
+  let oArr = []
+
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < copyArr.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        oArr.push(copyArr.splice(j, 1)[0])
+        break
+      }
+    }
+  }
+
+  return oArr
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
@@ -993,7 +1007,41 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-function totalTaskTime(arr, n) {}
+function totalTaskTime(arr, n) {
+  //I am certain there's faster solutions buuuut it works!
+  let threads = Array(n).fill(0)
+
+  let isDone = false
+  let steps = 0
+
+  do {
+    if (arr.length === 0) {
+      let threadsEmpty = true
+      threads.forEach((n) => {
+        if (n > 0) {
+          threadsEmpty = false
+        }
+      })
+
+      if (threadsEmpty) {
+        isDone = true
+        break
+      }
+    }
+
+    threads.forEach((thread, i, ts) => {
+      if (thread === 0 && arr.length !== 0) {
+        ts[i] = arr.shift()
+      }
+
+      ts[i]--
+    })
+
+    steps++
+  } while (!isDone)
+
+  return steps
+}
 
 /*-----------------------------------------------------------------*/
 module.exports = {
