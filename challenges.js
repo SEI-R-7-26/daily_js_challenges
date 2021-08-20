@@ -943,7 +943,52 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  //build some objects that hold, like: {dir:'U', dis:2}
+  let str = [...string].join('')
+
+  let actionsArr = []
+
+  while (str.length !== 0) {
+    let firstTokenMatch = str.search(/[UDLR]/)
+
+    if (firstTokenMatch < 0) {
+      break
+    } else {
+      let newDir = str.slice(0, 1)
+      str = str.slice(1)
+      let nextMatch = str.search(/[UDLR]/)
+      let newDist
+
+      if (nextMatch > 0) {
+        newDist = str.slice(0, nextMatch)
+        str = str.slice(nextMatch)
+      } else {
+        newDist = str
+        str = ''
+      }
+
+      actionsArr.push({ dir: newDir, dis: Number(newDist) })
+    }
+  }
+
+  //iterate through objects we made and change the arr
+  let oArr = [...arr]
+
+  actionsArr.forEach((action) => {
+    if (action.dir === 'U') {
+      oArr[0] += action.dis
+    } else if (action.dir === 'D') {
+      oArr[0] -= action.dis
+    } else if (action.dir === 'L') {
+      oArr[1] -= action.dis
+    } else if (action.dir === 'R') {
+      oArr[1] += action.dis
+    }
+  })
+
+  return oArr
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
