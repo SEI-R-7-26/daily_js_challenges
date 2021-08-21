@@ -747,7 +747,38 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  let splitArray = string.split('')
+  if (splitArray.length % 2 === 1) {
+    return false
+  } else {
+    for (let i = 0; i < splitArray.length; i++) {
+      let oppositeIndex = splitArray.length - i - 1
+      if (splitArray[i] === '(') {
+        if (splitArray[i + 1] === ')' || splitArray[oppositeIndex] === ')') {
+          continue
+        } else {
+          return false
+        }
+      } else if (splitArray[i] === '[') {
+        if (splitArray[i + 1] === ']' || splitArray[oppositeIndex] === ']') {
+          continue
+        } else {
+          return false
+        }
+      } else if (splitArray[i] === '{') {
+        if (splitArray[i + 1] === '}' || splitArray[oppositeIndex] === ']') {
+          continue
+        } else {
+          return false
+        }
+      } else {
+        continue
+      }
+    }
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
