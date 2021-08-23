@@ -12,9 +12,11 @@ Examples:
 sayHello() //=> Hello!
 -----------------------------------------------------------------*/
 // Your solution for 00-sayHello (example) here:
-function sayHello() {
-  return 'Hello!'
+function sayHello(hello) {
+  hello = 'Hello!'
+  return hello
 }
+sayHello()
 /*-----------------------------------------------------------------
 Challenge: 01-addOne
 
@@ -30,7 +32,10 @@ addOne(1) //=> 2
 addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
-function addOne(num) {}
+function addOne(num) {
+  let newNumber = num + 1
+  return newNumber
+}
 /*-----------------------------------------------------------------
 Challenge: 02-addTwoNumbers
 
@@ -49,7 +54,18 @@ addTwoNumbers(0, 0) //=> 0
 addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
-function addTwoNumbers(num1, num2) {}
+function addTwoNumbers(num1, num2) {
+  if (Number.isInteger(num1, num2)) {
+    return num1 + num2
+  } else {
+    return NaN
+  }
+}
+addTwoNumbers(5, 10) //=> 15
+addTwoNumbers(10, -2) //=> 8
+addTwoNumbers(0, 0) //=> 0
+addTwoNumbers('Hello', 5) //=> NaN
+
 /*-----------------------------------------------------------------
 Challenge: 03-sumNumbers
 
@@ -68,7 +84,16 @@ sumNumbers([2, 10, -5]) //=> 7
 sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
-function sumNumbers(nums) {}
+function sumNumbers(nums) {
+  const reducer = (accumulator, nums) => {
+    return accumulator + nums
+  }
+  if (nums.length === 0) {
+    return 0
+  } else {
+    return nums.reduce(reducer)
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 04-addList
 
@@ -87,7 +112,13 @@ add(1,50,1.23) //=> 52.23
 add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
-function addList() {}
+function addList() {
+  let sum = 0
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i]
+  }
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 05-computeRemainder
 
@@ -107,7 +138,14 @@ computeRemainder(4,0) //=> Infinity
 computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
-function computeRemainder(n1, n2) {}
+function computeRemainder(n1, n2) {
+  let remainder = n1 % n2
+  if (n2 === 0) {
+    return Infinity
+  } else {
+    return remainder
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 06-range
 
@@ -115,8 +153,12 @@ Difficulty: basic
 
 Prompt:
 
-- Write a function called range that accepts two integers as arguments and returns an array of integers starting with the first argument up to one less than the second argument.
-- The range function must be called with the first argument less than or equal to the second argument, otherwise return the string "First argument must be less than second".
+- Write a function called range that accepts two integers as
+  arguments and returns an array of integers starting with the first argument up to one less 
+  than the second argument.
+
+- The range function must be called with the first argument less than or equal to the second argument, 
+  otherwise return the string "First argument must be less than second".
 
 Examples:
 
@@ -126,7 +168,17 @@ range(1,1) //=> []
 range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
-function range(n1, n2) {}
+function range(n1, n2) {
+  let arr = []
+  for (let i = n1; i < n2; i++) {
+    arr.push(i)
+  }
+
+  if (n1 > n2) {
+    return 'First argument must be less than second'
+  }
+  return arr
+}
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
 
@@ -134,14 +186,18 @@ Difficulty: Basic
 
 Prompt:
 
-- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse order and converts all characters to uppercase.
+- Write a function called reverseUpcaseString that accepts a single string argument, 
+  then returns the string with its characters in reverse order and converts all characters to uppercase.
 
 Examples:
 
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
-function reverseUpcaseString(string) {}
+function reverseUpcaseString(string) {
+  let x = string.split('').reverse().join('')
+  return x.toUpperCase()
+}
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
 
@@ -158,7 +214,19 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-function removeEnds(string) {}
+function removeEnds(string) {
+  // convert string into array
+  stringArray = string.split('')
+  if (stringArray.length < 3) {
+    return ''
+  } else {
+    // remove last element in array
+    stringArray.pop()
+    // remove first element in array
+    stringArray.shift()
+    return stringArray.join('')
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
 
