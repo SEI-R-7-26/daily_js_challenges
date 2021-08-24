@@ -298,7 +298,7 @@ function isPalindrome(string) {
   while (string.includes(' ')) {
     string = string.replace(' ', '')
   }
-  
+
   let upperStr = string.toUpperCase()
   let revStrUpperArr = string.split('').reverse().join('').toUpperCase()
 
@@ -325,7 +325,24 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  if (str1.length !== str2.length) {
+    return NaN
+  }
+  //return the count of the symbols (characters, numbers, etc.) at the same position within each string that are different
+  let count = 0
+  //iterate through both strings to compare char at position => nested loop
+  // if difference at position, increase count
+  //return count
+  for (let i = 0; i < str1.length; i++) {
+    for (let j = 0; j < str2.length; j++) {
+      if (str1[i] !== str2[j]) {
+        count++
+      }
+    }
+  }
+  return count
+}
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
