@@ -293,17 +293,16 @@ isPalindrome(''); //=> true
 function isPalindrome(string) {
   if (string.length <= 1) {
     return true
-  } else if (){
-    let strUpperArr = string.toUpperCase().split(' ').join('')
-    let revStrUpperArr = string.toUpperCase().split(' ').reverse().join('')
-    if (strUpperArr === revStrUpperArr) {
-      return true
-    }
+  } 
+
+  while (string.includes(' ')) {
+    string = string.replace(' ', '')
   }
-
   
+  let upperStr = string.toUpperCase()
+  let revStrUpperArr = string.split('').reverse().join('').toUpperCase()
 
-
+  return upperStr === revStrUpperArr ? true : false
 }
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
