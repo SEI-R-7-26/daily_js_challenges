@@ -885,7 +885,31 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  const underSplit = string.split('_')
+  const dashSplit = string.split('-')
+  let finalString = ''
+  if (underSplit.length > 1) {
+    finalString += underSplit[0]
+    for (let i = 1; i < underSplit.length; i++) {
+      let firstLetter = underSplit[i][0].toUpperCase()
+      let sliceString = underSplit[i].slice(1)
+      console.log(sliceString)
+      finalString += firstLetter + sliceString
+    }
+  } else if (dashSplit.length > 1) {
+    finalString += dashSplit[0]
+    for (let i = 1; i < dashSplit.length; i++) {
+      let firstLetter = dashSplit[i][0].toUpperCase()
+      let sliceString = dashSplit[i].slice(1)
+      console.log(sliceString)
+      finalString += firstLetter + sliceString
+    }
+  } else {
+    return string
+  }
+  return finalString
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
