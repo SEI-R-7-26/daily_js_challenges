@@ -278,8 +278,9 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
 function formatWithPadding(n, char, length) {
+  // converts int to string, gets length value of string
   let str = n.toString()
-  console.log(str)
+  return str.padStart(length, char)
 }
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
