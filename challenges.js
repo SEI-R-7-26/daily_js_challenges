@@ -804,7 +804,27 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  const isWinner = arr.reduce((acc, arr2) => {
+    if (acc === false) {
+      acc = false
+      return acc
+    }
+    let arrString = arr2[0]
+    for (let i = 0; i < arrString.length; i++) {
+      console.log(arr2[1])
+      console.log(arrString.charCodeAt(i))
+      if (arr2[1] === arrString.charCodeAt(i)) {
+        acc = true
+        break
+      } else {
+        acc = false
+      }
+    }
+    return acc
+  }, true)
+  return isWinner
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
