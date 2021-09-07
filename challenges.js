@@ -335,10 +335,8 @@ function hammingDistance(str1, str2) {
   // if difference at position, increase count
   //return count
   for (let i = 0; i < str1.length; i++) {
-    for (let j = 0; j < str2.length; j++) {
-      if (str1[i] !== str2[j]) {
+      if (str1.charAt(i) !== str2.charAt(i)) {
         count++
-      }
     }
   }
   return count
