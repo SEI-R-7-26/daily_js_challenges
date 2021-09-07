@@ -360,7 +360,12 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-function mumble(string) {}
+function mumble(string) {
+  let newStri = ''
+  for(let i=0; i<string.length; i++) {
+  
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -378,7 +383,15 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
+function fromPairs(arr) {
+  let obj = {}
+  for(let i = 0; i < arr.length; i++) {
+    let inArr = arr[i]
+    obj[inArr[0]] = inArr[1]
+    
+  }
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
