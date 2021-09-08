@@ -977,7 +977,34 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  const str = string
+  const regexp = /\D\d+/g
+  let startingArr = arr
+  const matchesArray = str.match(regexp)
+  for (let i = 0; i < matchesArray.length; i++) {
+    let num = parseFloat(matchesArray[i].slice(1))
+
+    switch (matchesArray[i][0]) {
+      case 'U':
+        startingArr[0] += num
+        break
+      case 'D':
+        startingArr[0] -= num
+        break
+      case 'L':
+        startingArr[1] -= num
+        break
+      case 'R':
+        startingArr[1] += num
+        break
+      default:
+        continue
+    }
+    console.log(startingArr)
+  }
+  return startingArr
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
