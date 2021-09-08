@@ -935,7 +935,25 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  let index = n
+  let remainder = 0
+  let string = ''
+  let count = 0
+  while (index > 0) {
+    index % 2 === 0 ? (remainder = 0) : (remainder = 1)
+    index = Math.floor((index /= 2))
+    string = string + `${remainder}`
+  }
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '1') {
+      count++
+    } else {
+      continue
+    }
+  }
+  return count
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
