@@ -321,7 +321,8 @@ Difficulty: Intermediate
 
 Prompt:
 
-In information theory, the hamming distance refers to the count of the differences between two strings of equal length.  It is used in computer science for such things as implementing "fuzzy search"  capability.
+In information theory, the hamming distance refers to the count of the differences between two strings of equal length.  
+It is used in computer science for such things as implementing "fuzzy search"  capability.
 
 - Write a function named hammingDistance that accepts two arguments which are both strings of equal length.
 - The function should return the count of the symbols (characters, numbers, etc.) 
@@ -336,7 +337,20 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  let len1 = str1.length
+  let len2 = str2.length
+  if (len1 !== len2) {
+    return NaN
+  }
+  let dist = 0
+  for (let i = 0; i < str1.length; i += 1) {
+    if (str1[i] !== str2[i]) {
+      dist += 1
+    }
+  }
+  return dist
+}
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
