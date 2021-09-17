@@ -361,10 +361,16 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 function mumble(string) {
-  let newStri = ''
-  for(let i=0; i<string.length; i++) {
-  
+  let newStr = ''
+  let counter = 1
+  for(let i=0; i < string.length; i++) {
+    if (i === string.length-1) {
+      return newStr += string.charAt(i).repeat(counter)
+    }
+    newStr += `${string.charAt(i).repeat(counter)}-`
+    counter++
   }
+  return newStr
 }
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
