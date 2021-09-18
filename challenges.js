@@ -52,7 +52,7 @@ addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
 function addTwoNumbers(num1, num2) {
-  if (num1.isNaN == true || num2.isNaN == true) {
+  if (isNaN(num1) == true || isNaN(num2) == true) {
     return NaN
   }
   else {
@@ -174,7 +174,13 @@ Examples:
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
-function reverseUpcaseString(string) {}
+function reverseUpcaseString(string) {
+  let splitString = string.split("");
+  let reverseArray = splitString.reverse();
+  let joinArray = reverseArray.join("");
+  let finalString = joinArray.toUpperCase()
+  return finalString
+}
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
 
@@ -191,7 +197,12 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-function removeEnds(string) {}
+function removeEnds(string) {
+  if (string.length < 3) {
+    return ""
+  }
+  return string.substr(1, string.length-2)
+}
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
 
@@ -210,7 +221,25 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-function charCount(string) {}
+function charCount(string) {
+  let prev_char
+  let count_obj = {}
+  for (i = 0; i < string.length; i++) {
+    let splitString = string.split("");
+    let char = splitString[i]
+    let char_count = 0
+    if (prev_char != char) {
+      for (let i = 0; i < splitString.length; i++) {
+        if (splitString[i] == char) {
+          char_count += 1
+        }
+      }
+      count_obj[char] = char_count
+    }
+    prev_char = char
+  }
+  return count_obj
+}
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
 
@@ -232,7 +261,20 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
-function formatWithPadding(n, char, length) {}
+function formatWithPadding(n, char, length) {
+  let diff
+  let newString
+  let numString = (''+n)
+  if (numString.length < length) {
+    diff = length - (''+n).length
+    newString = numString
+    for (i = 0; i < diff; i++) {
+      newString = char + newString
+    }
+    numString = newString
+  }
+  return numString
+}
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -253,7 +295,22 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-function isPalindrome(string) {}
+function isPalindrome(string) {
+  string = string.toLowerCase()
+  let isPal = false
+  for (i = 0; i < string.length - 1; i++) {
+    string = string.replace(' ', '')
+  }
+  for (i = 0; i < Math.floor(string.length/2); i++) {
+    if (string[i] === string[string.length - i - 1]) {
+      isPal = true
+    }
+    else isPal = false
+  }
+  if (string.length == 1) return true
+  if (string === '') isPal = true
+  return isPal
+}
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
@@ -275,7 +332,14 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  if (str1.length !== str2.length) return NaN
+  let count = 0
+  for (i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) count += 1
+  }
+  return count
+}
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
@@ -295,7 +359,9 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-function mumble(string) {}
+function mumble(string) {
+  
+}
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
