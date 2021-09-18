@@ -360,7 +360,17 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 function mumble(string) {
-  
+  if (string.length === 1) return string
+  let result = ''
+  let repeat = 1
+  for (i = 0; i < string.length; i++) {
+    for (j = 0; j < repeat; j++) {
+      result += string[i]
+    }
+    if (i !== (string.length - 1)) result += '-'
+    repeat += 1
+  }
+  return result
 }
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
@@ -379,7 +389,13 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
+function fromPairs(arr) {
+  let result = {}
+  arr.forEach((item) => {
+    result[item[0]] = item[1]
+  })
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -397,7 +413,16 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, obj2) {
+  let result = {}
+  if (arguments.length == 1) result = arguments[0]
+  for (i = 0; i < arguments.length; i++) {
+    for (var key in arguments[i]) {
+      result[key] = (arguments[i])[key]
+    }
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 

@@ -1,11 +1,13 @@
-function hammingDistance(str1, str2) {
-  if (str1.length !== str2.length) return NaN
-  let count = 0
-  for (i = 0; i < str1.length; i++) {
-    if (str1[i] !== str2[i]) count += 1
+function mergeObjects(obj1, obj2) {
+  let result = {}
+  if (arguments.length == 1) result = arguments[0]
+  for (i = 0; i < arguments.length; i++) {
+    for (var key in arguments[i]) {
+      result[key] = (arguments[i])[key]
+    }
   }
-  console.log(count)
-  return count
+  console.log(result)
+  return result
 }
 
-hammingDistance('!!!!', '****')
+mergeObjects({}, {a: 1});
