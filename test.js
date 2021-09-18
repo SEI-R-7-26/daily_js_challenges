@@ -1,13 +1,13 @@
-function mergeObjects(obj1, obj2) {
-  let result = {}
-  if (arguments.length == 1) result = arguments[0]
-  for (i = 0; i < arguments.length; i++) {
-    for (var key in arguments[i]) {
-      result[key] = (arguments[i])[key]
+function isPrime(n) {
+  let result = false
+  if (n <= 1 || !Number.isInteger(n)) result = false
+  for (i = 2; i < n+1; i++) {
+    if (n % i == 0) { 
+      return false
     }
   }
-  console.log(result)
+  result = true
   return result
 }
 
-mergeObjects({}, {a: 1});
+isPrime(4) //=> true
