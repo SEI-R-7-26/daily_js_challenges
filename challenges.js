@@ -394,7 +394,6 @@ function fromPairs(arr) {
   for(let i = 0; i < arr.length; i++) {
     let inArr = arr[i]
     obj[inArr[0]] = inArr[1]
-    
   }
   return obj
 }
@@ -415,7 +414,32 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, ...obj2) {
+  // //first attempt 
+  // //if a key in objArr[i] is === to a key in obj1, the value of the key in objArr[i] is now the value of the same key in obj1.
+  // //else add the property to obj1
+
+  // let objArr = obj2
+  // for (let key in obj1) {
+  //   for (let i = 0; i < objArr.length; i++) {
+  //     let altObj = objArr[i]
+  //     for (let key2 in altObj) {
+  //       if (key === key2) obj1[key] = altObj[key2]
+  //       else obj1[key2] = altObj[key2]
+  //     }
+  //   }
+  // }
+  // return obj1
+
+  //second attempt
+  let objArr = obj2
+  objArr.forEach(obj => {
+    for(let key in obj){
+      obj1[key] = obj[key]
+    }
+  })
+  return obj1
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
