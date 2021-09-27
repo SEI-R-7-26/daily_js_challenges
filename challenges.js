@@ -411,7 +411,17 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, obj2) {
+  let mergedObject = {}
+
+  if (Object.keys(obj1).length) {
+    for (let i = 0; i < arguments.length; i++) {
+      mergedObject = { ...mergedObject, ...arguments[i] }
+    }
+    return mergedObject
+  }
+  return obj1
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
