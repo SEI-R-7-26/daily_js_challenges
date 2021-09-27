@@ -478,10 +478,8 @@ function findHighestPriced(arr) {
   //for each object, check price value against sum variable, if price value is higher than current sum, obj is stored., if equal, first is stored
   let highestValue = {price: 0}
   arr.forEach(obj => {
-    for (let price in obj) {
-      if (obj.price > highestValue.price) highestValue = obj
-      else highestValue
-    }
+    if (obj.price > highestValue.price) highestValue = obj
+    else highestValue
   })
   return highestValue
 }
