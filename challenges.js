@@ -588,7 +588,17 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  //takes in an array of nested array
+  //returns a non-nested array with all values in original arr 
+  // if array has duplicate vals, they should be added to the returned array
+  let flatArr = []
+  arr.forEach(element => {
+    if (!Array.isArray(element)) flatArr.push(element)
+    else flatArr.push(...flatten(element))
+  })
+  return flatArr
+}
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
