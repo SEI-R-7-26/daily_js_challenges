@@ -1069,7 +1069,50 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-function totalTaskTime(arr, n) {}
+function totalTaskTime(arr, n) {
+  let count = 0
+  let count1 = 0
+  let count2 = 0
+  let count3 = 0
+  let threads = n
+  while (arr.length > 0) {
+    if (threads === 1) {
+      count += arr.shift()
+    } else if (threads === 2) {
+      if (count1 <= count2) {
+        count1 += arr.shift() || 0
+        count2 += arr.shift() || 0
+      } else {
+        count2 += arr.shift() || 0
+        count1 += arr.shift() || 0
+      }
+      count1 >= count2 ? (count = count1) : (count = count2)
+    } else if (threads === 3) {
+      let addToCount = 0
+      if (count1 <= count2 && count1 <= count3) {
+        count1 += arr.shift() || 0
+        count2 += arr.shift() || 0
+        count3 += arr.shift() || 0
+      } else if (count2 <= count1 && count2 <= count3) {
+        count2 += arr.shift() || 0
+        count1 += arr.shift() || 0
+        count3 += arr.shift() || 0
+      } else {
+        count3 += arr.shift() || 0
+        count1 += arr.shift() || 0
+        count2 += arr.shift() || 0
+      }
+      count1 >= count2 ? (addToCount = count1) : (addToCount = count2)
+      count3 >= (count1 || count2)
+        ? (addToCount = count3)
+        : (addToCount = addToCount)
+      count = addToCount
+    } else {
+      return 0
+    }
+  }
+  return count
+}
 
 /*-----------------------------------------------------------------*/
 module.exports = {
