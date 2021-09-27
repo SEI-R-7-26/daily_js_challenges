@@ -473,7 +473,18 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
-function findHighestPriced(arr) {}
+function findHighestPriced(arr) {
+  //need to iterate over the array
+  //for each object, check price value against sum variable, if price value is higher than current sum, obj is stored., if equal, first is stored
+  let highestValue = {price: 0}
+  arr.forEach(obj => {
+    for (let price in obj) {
+      if (obj.price > highestValue.price) highestValue = obj
+      else highestValue
+    }
+  })
+  return highestValue
+}
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
