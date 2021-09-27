@@ -552,7 +552,16 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  //returns the output of acc callback function
+  //iterates over each element in arr. for each element invoke acc(prevAccOutput, currEl, and indexOfCurrEl)
+  //on first iteration, give val as first arg to acc
+  let accOutput
+  for (let i = 0; i < arr.length; i++) {
+    i === 0 ? (accOutput = acc(value, arr[i], i)) : (accOutput = acc(accOutput, arr[i], i))
+  }
+  return accOutput
+}
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
