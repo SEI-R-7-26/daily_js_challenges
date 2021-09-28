@@ -359,7 +359,9 @@ Difficulty: Intermediate
 Prompt:
 
 - Write a function called mumble that accepts a single string argument.
-- The function should return a string that has each character repeated the number of times according to its position within the string arg.  In addition, each repeated section of characters should be separated by a hyphen (-).
+- The function should return a string that has each character repeated 
+  the number of times according to its position within the string arg.  
+  In addition, each repeated section of characters should be separated by a hyphen (-).
 - Examples describe it best..
 
 Examples:
@@ -370,7 +372,13 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-function mumble(string) {}
+function mumble(string) {
+  let result = ''
+  for (var i = 0; i < string.length; i++) {
+    result += ((i || '') && '-') + string.charAt(i).repeat(i + 1)
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -379,7 +387,8 @@ Difficulty: Intermediate
 Prompt:
 
 - Write a function named fromPairs that creates an object from an array containing nested arrays.
-- Each nested array will have two elements representing key/value pairs used to create key/value pairs in an object to be returned by the function.
+- Each nested array will have two elements representing key/value pairs 
+  used to create key/value pairs in an object to be returned by the function.
 - If a key appears in multiple pairs, the rightmost pair should overwrite the previous entry in the object.
 
 Examples:
@@ -388,7 +397,13 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
+function fromPairs(arr) {
+  let obj = {}
+  arr.forEach(function (value) {
+    obj[value[0]] = value[1]
+  })
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -396,8 +411,14 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named mergeObjects that accepts at least two objects as arguments, merges the properties of the second through n objects into the first object, then finally returns the first object.
-- If any objects have the same property key, values from the object(s) later in the arguments list should overwrite earlier values.
+- Write a function named mergeObjects that 
+accepts at least two objects as arguments, 
+merges the properties of the second 
+through n objects into the first object, 
+then finally returns the first object.
+- If any objects have the same property key, 
+values from the object(s) later in the arguments 
+list should overwrite earlier values.
 
 Examples:
 
@@ -406,7 +427,10 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, obj2) {
+  let newObj2 = { ...obj2 }
+  return Object.assign(obj1, newObj2)
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
