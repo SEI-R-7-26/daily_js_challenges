@@ -226,7 +226,20 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-function charCount(string) {}
+function charCount(string) {
+  let answer = {}
+  string.charAt(0)
+  for (let i = 0; i < string.length; i++) {
+    let b = string.charAt(i)
+
+    if (answer[b]) {
+      answer[b] += 1
+    } else {
+      answer[b] = 1
+    }
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
 
@@ -248,7 +261,16 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
-function formatWithPadding(n, char, length) {}
+function formatWithPadding(n, char, length) {
+  result = `${n}`
+  let j = length - result.length
+  if (j > 0) {
+    for (let i = 0; i < j; i++) {
+      result = char.concat(result)
+    }
+    return result
+  } else return result
+}
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -269,7 +291,26 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-function isPalindrome(string) {}
+function isPalindrome(string) {
+  let lowstring = string.toLowerCase()
+  if (string.length > 1) {
+    let reversed = ''
+    for (let i = string.length - 1; i >= 0; i--) {
+      if (string[i] != ' ') {
+        reversed = reversed.concat(lowstring[i])
+      }
+    }
+    lowstring = lowstring.split(' ').join('')
+    if (reversed === lowstring) {
+      return true
+    } else {
+      return false
+    }
+  } else {
+    return true
+  }
+}
+
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
@@ -291,7 +332,20 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  let difference = 0
+  if (str1.length === str2.length) {
+    for (let i = 0; i < str1.length; i++) {
+      if (str1[i] != str2[i]) {
+        difference += 1
+      }
+    }
+
+    return difference
+  } else {
+    return NaN
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
@@ -311,7 +365,20 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-function mumble(string) {}
+function mumble(string) {
+  answer = ''
+  for (let i = 0; i < string.length; i++) {
+    if (i > 0) {
+      answer = answer.concat('-')
+    }
+
+    for (let j = -1; j < i; j++) {
+      answer = answer.concat(string[i])
+      console.log(answer)
+    }
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -329,8 +396,13 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
-/*-----------------------------------------------------------------
+function fromPairs(arr) {
+  answer = {}
+  for (let i = 0; i < arr.length; i++) {
+    answer[arr[i][0]] = arr[i][1]
+  }
+  return answer
+} /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
 Difficulty:  Intermediate
@@ -347,7 +419,20 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects() {
+  let result = {}
+  for (let i = 0; i < arguments.length; i++) {
+    let keys = Object.keys(arguments[i])
+    if (keys.length > 0) {
+      for (let j = 0; j < keys.length; j++) {
+        result[keys[j]] = arguments[i][keys[j]]
+      }
+    } else {
+      result = {}
+    }
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
