@@ -742,7 +742,20 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  let winner = false
+  let char = ''
+  for (i = 0; i < arr.length; i ++) {
+    char = String.fromCharCode(arr[i][1])
+    if (arr[i][0].includes(char)) {
+      winner = true
+    }
+    else {
+      return false
+    }
+  }
+  return winner
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -768,7 +781,14 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-function getNumForIP(bits) {}
+function getNumForIP(bits) {
+  let result = 0
+  let sections = bits.split('.').reverse()
+  for (i = 0; i < sections.length; i++){
+    result += parseInt(sections[i])*Math.pow(256,i)
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -793,7 +813,9 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
