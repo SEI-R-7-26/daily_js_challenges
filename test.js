@@ -1,13 +1,16 @@
-function isPrime(n) {
-  let result = false
-  if (n <= 1 || !Number.isInteger(n)) result = false
-  for (i = 2; i < n+1; i++) {
-    if (n % i == 0) { 
-      return false
+function intersection(arr1, arr2) {
+  let result = []
+  for (i = 0; i < arr2.length; i ++) {
+    for (j = 0; j < arr1.length; j++) {
+      if (arr2[i] === arr1[j]) {
+        result.push(arr2[i])
+        break
+      }
     }
   }
-  result = true
   return result
 }
 
-isPrime(4) //=> true
+intersection(['a', 1], []) //=> []
+intersection(['a', 1], [true, 'a', 15]) //=> ['a']
+intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
