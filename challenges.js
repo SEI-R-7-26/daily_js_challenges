@@ -814,7 +814,18 @@ toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
 function toCamelCase(string) {
-  
+  let newStr = string
+  for (i = 0; i < newStr.length; i++){
+    if (newStr[i] === '-') {
+      newStr = newStr.replace('-', '')
+      newStr = newStr.slice(0,i) + newStr.charAt(i).toUpperCase() + newStr.slice(i+1)
+    }
+    else if (newStr[i] === '_') {
+      newStr = newStr.replace('_', '')
+      newStr = newStr.slice(0,i) + newStr.charAt(i).toUpperCase() + newStr.slice(i+1)
+    }
+  }
+  return newStr
 }
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
