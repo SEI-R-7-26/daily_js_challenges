@@ -438,10 +438,14 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named findHighestPriced that accepts a single array of objects.
-- The objects contained in the array are guaranteed to have a price property holding a numeric value.
-- The function should return the object in the array that has the largest value held in the price property.
-- If there's a tie between two or more objects, return the first of those objects in the array.
+- Write a function named findHighestPriced that 
+  accepts a single array of objects.
+- The objects contained in the array are guaranteed to have a price 
+  property holding a numeric value.
+- The function should return the object in the array 
+  that has the largest value held in the price property.
+- If there's a tie between two or more objects, 
+  return the first of those objects in the array.
 - Return the original object, not a copy.
 - Do not mutate the array being passed in.
 
@@ -464,7 +468,17 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
-function findHighestPriced(arr) {}
+function findHighestPriced(arr) {
+  let maxPrice = 0
+  let obj = null
+  arr.forEach(function (item) {
+    if (item.price > maxPrice) {
+      maxPrice = item.price
+      obj = item
+    }
+  })
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
@@ -476,7 +490,11 @@ The goal is of this challenge is to write a function that performs the functiona
 
 - Write a function named mapArray that accepts two arguments: a single array and a callback function.
 - The mapArray function should return a new array of the same length as the array argument.
-- The mapArray function should iterate over each element in the array (first arg).  For each iteration, invoke the callback function (2nd arg), passing to it as arguments, the current element and its index.  Whatever is returned by the callback function should be included in the new array at the index of the current iteration.
+- The mapArray function should iterate over each element in the array (first arg). 
+  For each iteration, invoke the callback function (2nd arg), 
+  passing to it as arguments, the current element and its index.  
+  Whatever is returned by the callback function should be included 
+  in the new array at the index of the current iteration.
 
 Examples:
 
@@ -491,7 +509,16 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
-function mapArray(arr, cb) {}
+function mapArray(arr, cb) {
+  // create new array
+  let newArr = []
+  // iterrate through array, push into newarray the callback function value the element being the new value
+  // and keeping its index according it its index position.
+  arr.forEach(function (element, index) {
+    newArr.push(cb(element, index))
+  })
+  return newArr
+}
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
@@ -499,12 +526,25 @@ Difficulty:  Intermediate
 
 Prompt:
 
-The goal is of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
+The goal is of this challenge is to write a function that performs the functionality of JavaScript's 
+Array.prototype.reduce method.
 
-- Write a function named reduceArray that accepts three arguments: (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
+- Write a function named reduceArray that accepts three arguments: 
+  (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
+
 - The reduceArray function should return whatever is returned by the callback function on the last iteration.
-- The reduceArray function should iterate over each element in the array (first arg).  For each iteration, invoke the callback function (2nd arg), passing to it three arguments: (1) the "accumulator", which is the value returned by the callback during the previous iteration; (2) the  current element; and (3) the index of the current iteration.
-- On the first iteration, provide the third argument provided to reduceArray as the first argument when invoking the callback, then for subsequent iterations, provide the value returned by the callback during the previous iteration.
+
+- The reduceArray function should iterate over each element in the array (first arg). 
+  For each iteration, invoke the callback function (2nd arg),
+  passing to it three arguments: (1) the "accumulator", 
+  which is the value returned by the callback during the previous iteration; 
+  (2) the  current element; and (3) the index of the current iteration.
+
+- On the first iteration, provide the third argument 
+  provided to reduceArray as the first argument when 
+  invoking the callback, then for subsequent iterations, 
+  provide the value returned by the callback during the 
+  previous iteration.
 
 Examples:
 
@@ -525,7 +565,17 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  let newValue = value
+  arr.forEach(function (element, index) {
+    newValue = acc(newValue, element, index)
+  })
+  return newValue
+  // arr is array
+  // acc = function
+  // value = initial value of accumulator
+}
+
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -533,15 +583,18 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named flatten that accepts a single array that may contain nested arrays and returns a new "flattened" array.
+- Write a function named flatten that accepts a single array 
+  that may contain nested arrays and returns a new "flattened" array.
 - A flattened array is an array that contains no nested arrays.
 - Arrays maybe nested at any level.
-- If any of the arrays have duplicate values those duplicate values should be present in the returned array.
+- If any of the arrays have duplicate values 
+  those duplicate values should be present in the returned array.
 - The values in the new array should maintain their ordering as shown in the examples below.
 
 Hint:
 
-- This assignment provides an excellent opportunity to use recursion (a function that calls itself).  It can also be solved by using an inner function.
+- This assignment provides an excellent opportunity to use recursion 
+ (a function that calls itself).  It can also be solved by using an inner function.
 
 Examples:
 
@@ -572,7 +625,10 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  for (let i = 2; i < n; i++) if (n % i === 0) return false
+  return n > 1
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
