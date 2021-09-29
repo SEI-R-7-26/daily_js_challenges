@@ -590,7 +590,17 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n < 2 || !Number.isInteger(n)) {
+    return false
+  }
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false
+    }
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
@@ -614,7 +624,20 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  // let factors = []
+  // let startingPrime = 2
+  // if (n > 1 && Number.isInteger(n)) {
+  //   while (startingPrime >= 2) {}
+  //   for (let i = 2; i <= n; i++) {
+  //     if (Number.isInteger(n / i) && isPrime(i)) {
+  //       factors.push(i)
+  //     }
+  //   }
+  // }
+  // console.log('factors :>> ', factors)
+  // return factors
+}
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -635,7 +658,27 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let intersection = []
+  let array1 = []
+  let array2 = []
+
+  if (array1.length > array2.length) {
+    array1 = [...arr1]
+    array2 = [...arr2]
+  } else {
+    array1 = [...arr2]
+    array2 = [...arr1]
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    if (array2.includes(array1[i])) {
+      intersection.push(array1[i])
+    }
+  }
+
+  return intersection
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
