@@ -853,7 +853,26 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  let [x, y] = [arr[0], arr[1]]
+  let direction = ''
+  const instructions = string
+    .split(/(?=[UDLR])|(?<=[UDLR])/g)
+    .forEach((item) => {
+      if (['U', 'D', 'L', 'R'].includes(item)) {
+        direction = item
+      } else if (direction === 'U') {
+        x += parseInt(item)
+      } else if (direction === 'D') {
+        x -= parseInt(item)
+      } else if (direction === 'L') {
+        y -= parseInt(item)
+      } else if (direction === 'R') {
+        y += parseInt(item)
+      }
+    })
+  return [x, y]
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
