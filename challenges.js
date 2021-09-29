@@ -699,7 +699,7 @@ function intersection(arr1, arr2) {
   for (let i = 0; i < arr1.length; i++) {
     newArr1.push(arr1[i])
   }
-  
+
   // for (let j = 0; j < arr2.length; j++) {
   //     if (newArr1.includes(arr2[j])) {
   //     elementCopy = newArr1.splice(newArr1.indexOf(arr2[j]), 1)
@@ -737,7 +737,46 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  // let leftHalf = string.slice(0, string.length/2).split('')
+  // let rightHalf = string.slice(string.length/2, string.length).split('')
+  // console.log('leftHalf', leftHalf, '   righthALF', rightHalf)
+
+  // let balanced = null
+  // for (let i = 0; i < rightHalf.length; i++) {
+  //   for (let j = 0; j < leftHalf.length; j++) {
+  //     if (rightHalf[i] === leftHalf[j]) balanced = true
+  //     else balanced = false
+  //   }
+  // }
+  // return balanced
+
+//   if (str.length % 2) return false
+//   var stack = []
+//   for (var i = 0; i < str.length; i++) {
+//     var b = str.charAt(i)
+//     if ('([{'.includes(b)) {
+//       // add opening brackets to the stack
+//       stack.push(b)
+//     } else {
+//       // not an opening bracket, so remove last opening and check if matched
+//       if (!'() {} []'.includes(stack.pop() + b)) return false
+//     }
+// }
+
+if (string.length % 2 !== 0) return false
+let newArr = []
+let arr = string.split('')
+  for(let i = 0; i < string.length; i++){
+    let char = string.charAt(i)
+  let template = '([{'
+  if (template.includes(char)) newArr.push(char)
+  else {
+    if (!'() {} []'.includes(newArr.pop() + char)) return false
+  }
+  }
+return true
+}
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
