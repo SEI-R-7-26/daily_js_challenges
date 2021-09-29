@@ -884,7 +884,39 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  let xPos = arr[0]
+  let yPos = arr[1]
+  let num = ''
+  for (i = 0; i < string.length; i++) {
+    num = ''
+    if (string[i] === 'L') {
+      yPos -= parseInt(getNum(i, string))
+    }
+    else if (string[i] === 'R') {
+      yPos += parseInt(getNum(i, string))
+    }
+    else if (string[i] === 'U') {
+      xPos += parseInt(getNum(i, string))
+    }
+    else if (string[i] === 'D') {
+      xPos -= parseInt(getNum(i, string))
+    }
+  }
+
+  function getNum(i, string){
+    for (j = i + 1; j < string.length; j++) {
+      if (Number.isInteger(parseInt(string[j]))) {
+        num += string[j]
+      }
+      else break
+    }
+    return num
+  }
+
+  let result = [xPos, yPos]
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
@@ -910,7 +942,26 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
-function addChecker(arr, n) {}
+function addChecker(arr, n) {
+  let testSum = 0
+  for (i = 0; i < arr.length; i++){
+    if (sumTest(i)) {
+      return true
+    }
+  }
+
+  function sumTest(i){
+    for (j = i + 1; j < arr.length; j++){
+      let startIndex = i
+      testSum = arr[startIndex] + arr[j]
+      if (testSum === n) {
+        return true
+      }
+    }
+    return false
+  }
+  return false
+}
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
 
