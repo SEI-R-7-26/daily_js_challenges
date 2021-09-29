@@ -380,7 +380,7 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
 function fromPairs(arr) {
-  answer = {}
+  let answer = {}
   for (let i = 0; i < arr.length; i++) {
     answer[arr[i][0]] = arr[i][1]
   }
@@ -405,7 +405,7 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c:
 // Your solution for 15-mergeObjects here:
 function mergeObjects() {
   if (arguments.length > 0) {
-    answer = arguments[0]
+    let answer = arguments[0]
     for (let i = 1; i < arguments.length; i++) {
       if (typeof arguments[i] === 'object') {
         for (const key in arguments[i]) {
@@ -486,9 +486,11 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 function mapArray(arr, cb) {
-  return arr.map((element, index) => {
-    return cb(element, index)
-  })
+  let answer = []
+  for (let i = 0; i < arr.length; i++) {
+    answer.push(cb(arr[i], i))
+  }
+  return answer
 }
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
@@ -523,7 +525,12 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  for (let i = 0; i < arr.length; i++) {
+    value = acc(value, arr[i], i)
+  }
+  return value
+}
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
