@@ -820,7 +820,16 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  let binary = n
+    .toString(2)
+    .split('')
+    .reduce((acc, current) => {
+      if (current === '1') acc++
+      return acc
+    }, 0)
+  return binary
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
