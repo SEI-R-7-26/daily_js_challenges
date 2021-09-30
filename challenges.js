@@ -307,7 +307,7 @@ function isPalindrome(string) {
   let newString = /[^A-Za-z0-9]/g
   string = string.toLowerCase().replace(newString, '')
   let len = string.length
-  for (var i = 0; i < len / 2; i++) {
+  for (let i = 0; i < len / 2; i++) {
     if (string[i] !== string[len - 1 - i]) {
       return false
     }
@@ -374,7 +374,7 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 // Your solution for 13-mumble here:
 function mumble(string) {
   let result = ''
-  for (var i = 0; i < string.length; i++) {
+  for (let i = 0; i < string.length; i++) {
     result += ((i || '') && '-') + string.charAt(i).repeat(i + 1)
   }
   return result
@@ -615,7 +615,9 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function named isPrime that returns true when the integer argument passed to it is a prime number and false when the argument passed to it is not prime.
+- Write a function named isPrime that returns 
+  true when the integer argument passed to it is a prime number 
+  and false when the argument passed to it is not prime.
 - A prime number is a whole number (integer) greater than 1 that is evenly divisible by only itself.
 
 Examples:
@@ -628,8 +630,18 @@ isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
 function isPrime(n) {
-  for (let i = 2; i < n; i++) if (n % i === 0) return false
-  return n > 1
+  if (n <= 1) return false
+  if (n === 2) return true
+
+  let newNumber = Math.sqrt(n)
+
+  for (let i = 2; i <= newNumber; i++) {
+    if (n % i === 0) return false
+  }
+  if (n % 1) {
+    return false
+  }
+  return true
 }
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
@@ -659,7 +671,12 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  let factors = []
+  if (n < 2 || !Number.isInteger(n)) {
+    return factors
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -667,7 +684,8 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function named intersection that accepts two arguments which are both arrays.  The array arguments may contain any mixture of strings, numbers and/or booleans - but no reference types, i.e., objects.
+- Write a function named intersection that accepts two arguments which are both arrays.  
+  The array arguments may contain any mixture of strings, numbers and/or booleans - but no reference types, i.e., objects.
 - The function should return a new array containing all elements in common, including repeating element values.
 - The ordering of the elements in the returned is not important.
 - If there are no elements in the arrays in common,  the intersection function should return an empty array.
@@ -680,7 +698,16 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let result = []
+
+  let newArr2 = [...arr2]
+  arr1.forEach((val) => {
+    let idx = newArr2.indexOf(val)
+    if (idx > -1) result.push(newArr2.splice(idx, 1)[0])
+  })
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
