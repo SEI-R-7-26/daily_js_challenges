@@ -605,7 +605,9 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  return arr.flat(Infinity)
+}
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -636,10 +638,15 @@ Difficulty: Intermediate
 
 Prompt:
 
-Now that you have solved the last challenge of determining if a whole number is prime, let's expand upon that concept to...
-- Write a function named primeFactors that accepts a whole number greater than one (1) as an argument and returns an array of that argument's prime factors.
-- The prime factors of a whole number are the prime numbers that, when multiplied together, equals the whole number.
-- If the argument provided is not greater than 1, or not a whole number, then primeFactors should return an empty array.
+Now that you have solved the last challenge of determining if a whole number is prime, 
+let's expand upon that concept to...
+- Write a function named primeFactors that 
+accepts a whole number greater than one (1) as an argument and 
+returns an array of that argument's prime factors.
+- The prime factors of a whole number are the prime numbers that, 
+when multiplied together, equals the whole number.
+- If the argument provided is not greater than 1, or not a whole number, 
+then primeFactors should return an empty array.
 
 Examples:
 
