@@ -610,13 +610,12 @@ function primeFactors(n) {
     return true
   }
 
-  let prime = 2 // start with smallest prime
+  let prime = 2
   while (!isPrime(n)) {
     if (Number.isInteger(n / prime)) {
       factors.push(prime)
       n = n / prime
     } else {
-      // find next prime
       prime++
       while (!isPrime(prime)) prime++
     }
