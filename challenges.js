@@ -596,7 +596,17 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n < 2 || !Number.isInteger(n)) {
+    return false
+  }
+  for (let i = 2; i <= n / 2; i++) {
+    if (Number.isInteger(n / i)) {
+      return false
+    }
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
@@ -620,7 +630,41 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  const isPrime = (n) => {
+    if (n < 2 || !Number.isInteger(n)) {
+      return false
+    }
+    for (let i = 2; i <= n / 2; i++) {
+      if (Number.isInteger(n / i)) {
+        return false
+      }
+    }
+    return true
+  }
+  let answer = []
+  let num = n
+  if (n < 2 || !Number.isInteger(n)) {
+    return answer
+  }
+  divideAgain = (index) => {
+    if (isPrime(index)) {
+      if (Number.isInteger(num / index)) {
+        answer.push(index)
+        num = num / index
+        divideAgain(index)
+      }
+    }
+  }
+  for (let i = 2; i <= num; i++) {
+    if (isPrime(num)) {
+      answer.push(num)
+      return answer
+    }
+    divideAgain(i)
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -641,7 +685,26 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let arr = arr1.length > arr2.length ? arr2 : arr1
+  let otherArr = arr1.length > arr2.length ? arr1 : arr2
+  let answer = []
+  checker = (index) => {
+    for (let j = 0; j < otherArr.length; j++) {
+      if (arr[index] === otherArr[j]) {
+        return true
+      }
+    }
+    return false
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (checker(i)) {
+      answer.push(arr[i])
+    }
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
@@ -663,7 +726,42 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  let answer = string.split('')
+  for (let i = answer.length / 2 - 1; i >= 0; i--) {
+    for (let j = i + 1; j < answer.length; j++) {
+      if (
+        answer[i] + answer[j] === '()' ||
+        answer[i] + answer[j] === '[]' ||
+        answer[i] + answer[j] === '{}'
+      ) {
+        answer.splice(j, 1)
+        answer.splice(i, 1)
+        j = answer.length
+        i++
+      } else if (
+        answer[i] === '{' &&
+        (answer[j] === ']' || answer[j] === ')')
+      ) {
+        return false
+      } else if (
+        answer[i] === '[' &&
+        (answer[j] === ')' || answer[j] === '}')
+      ) {
+        return false
+      } else if (
+        answer[i] === '(' &&
+        (answer[j] === ']' || answer[j] === '}')
+      ) {
+        return false
+      }
+    }
+  }
+  if (answer.length === 0) {
+    return true
+  }
+  return false
+}
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
@@ -689,7 +787,24 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  let count = 0
+  for (let i = 0; i < arr.length; i++) {
+    let toggle = false
+    for (let j = 0; j < arr[i][0].length; j++) {
+      if (arr[i][0].charCodeAt(j) === arr[i][1]) {
+        toggle = true
+      }
+    }
+    if (toggle) {
+      count++
+    }
+  }
+  if (count === arr.length) {
+    return true
+  }
+  return false
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -715,7 +830,14 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-function getNumForIP(bits) {}
+function getNumForIP(bits) {
+  const arr = bits.split('.')
+  let answer = 0
+  for (let i = 0; i < arr.length; i++) {
+    answer += arr[arr.length - 1 - i] * 256 ** i
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -740,7 +862,26 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  if (!string.includes('-', '_')) {
+    return string
+  }
+  let arr = string.split(/[-_]/g)
+  for (let i = 1; i < arr.length; i++) {
+    console.log(arr[i])
+    arr[i].replace(arr[i].charAt(1), arr[i].charAt(1).toUpperCase())
+    console.log(arr[i])
+    val = arr[i][arr[i].length - 1].toUpperCase()
+    arr[i].pop()
+    arr[i].push(val)
+    arr[i].reverse()
+    arr[i].join('')
+    console.log(arr[i])
+  }
+  console.log(arr)
+  arr.join('')
+  return arr
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
