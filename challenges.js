@@ -863,24 +863,17 @@ toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
 function toCamelCase(string) {
-  if (!string.includes('-', '_')) {
-    return string
-  }
-  let arr = string.split(/[-_]/g)
+  let arr = string.split(/[_-]/g)
+  let answer = [arr[0]]
   for (let i = 1; i < arr.length; i++) {
-    console.log(arr[i])
-    arr[i].replace(arr[i].charAt(1), arr[i].charAt(1).toUpperCase())
-    console.log(arr[i])
-    val = arr[i][arr[i].length - 1].toUpperCase()
-    arr[i].pop()
-    arr[i].push(val)
-    arr[i].reverse()
-    arr[i].join('')
-    console.log(arr[i])
+    let arr2 = arr[i].split('')
+    arr2.reverse()
+    arr2[arr2.length - 1] = arr2[arr2.length - 1].toUpperCase()
+    arr2.reverse()
+    let toUpper = arr2.join('')
+    answer.push(toUpper)
   }
-  console.log(arr)
-  arr.join('')
-  return arr
+  return answer.join('')
 }
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
