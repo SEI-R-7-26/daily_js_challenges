@@ -12,7 +12,11 @@ Examples:
 sayHello() //=> Hello!
 -----------------------------------------------------------------*/
 // Your solution for 00-sayHello (example) here:
-function sayHello() {}
+function sayHello(hello) {
+  hello = 'Hello!'
+  return hello
+}
+sayHello()
 /*-----------------------------------------------------------------
 Challenge: 01-addOne
 
@@ -28,7 +32,10 @@ addOne(1) //=> 2
 addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
-function addOne(num) {}
+function addOne(num) {
+  let newNumber = num + 1
+  return newNumber
+}
 /*-----------------------------------------------------------------
 Challenge: 02-addTwoNumbers
 
@@ -47,7 +54,18 @@ addTwoNumbers(0, 0) //=> 0
 addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
-function addTwoNumbers(num1, num2) {}
+function addTwoNumbers(num1, num2) {
+  if (Number.isInteger(num1, num2)) {
+    return num1 + num2
+  } else {
+    return NaN
+  }
+}
+addTwoNumbers(5, 10) //=> 15
+addTwoNumbers(10, -2) //=> 8
+addTwoNumbers(0, 0) //=> 0
+addTwoNumbers('Hello', 5) //=> NaN
+
 /*-----------------------------------------------------------------
 Challenge: 03-sumNumbers
 
@@ -66,7 +84,16 @@ sumNumbers([2, 10, -5]) //=> 7
 sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
-function sumNumbers(nums) {}
+function sumNumbers(nums) {
+  const reducer = (accumulator, nums) => {
+    return accumulator + nums
+  }
+  if (nums.length === 0) {
+    return 0
+  } else {
+    return nums.reduce(reducer)
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 04-addList
 
@@ -85,7 +112,13 @@ add(1,50,1.23) //=> 52.23
 add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
-function addList() {}
+function addList() {
+  let sum = 0
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i]
+  }
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 05-computeRemainder
 
@@ -105,7 +138,14 @@ computeRemainder(4,0) //=> Infinity
 computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
-function computeRemainder(n1, n2) {}
+function computeRemainder(n1, n2) {
+  let remainder = n1 % n2
+  if (n2 === 0) {
+    return Infinity
+  } else {
+    return remainder
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 06-range
 
@@ -113,8 +153,12 @@ Difficulty: basic
 
 Prompt:
 
-- Write a function called range that accepts two integers as arguments and returns an array of integers starting with the first argument up to one less than the second argument.
-- The range function must be called with the first argument less than or equal to the second argument, otherwise return the string "First argument must be less than second".
+- Write a function called range that accepts two integers as
+  arguments and returns an array of integers starting with the first argument up to one less 
+  than the second argument.
+
+- The range function must be called with the first argument less than or equal to the second argument, 
+  otherwise return the string "First argument must be less than second".
 
 Examples:
 
@@ -124,7 +168,17 @@ range(1,1) //=> []
 range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
-function range(n1, n2) {}
+function range(n1, n2) {
+  let arr = []
+  for (let i = n1; i < n2; i++) {
+    arr.push(i)
+  }
+
+  if (n1 > n2) {
+    return 'First argument must be less than second'
+  }
+  return arr
+}
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
 
@@ -132,14 +186,18 @@ Difficulty: Basic
 
 Prompt:
 
-- Write a function called reverseUpcaseString that accepts a single string argument, then returns the string with its characters in reverse order and converts all characters to uppercase.
+- Write a function called reverseUpcaseString that accepts a single string argument, 
+  then returns the string with its characters in reverse order and converts all characters to uppercase.
 
 Examples:
 
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
-function reverseUpcaseString(string) {}
+function reverseUpcaseString(string) {
+  let x = string.split('').reverse().join('')
+  return x.toUpperCase()
+}
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
 
@@ -156,7 +214,19 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-function removeEnds(string) {}
+function removeEnds(string) {
+  // convert string into array
+  stringArray = string.split('')
+  if (stringArray.length < 3) {
+    return ''
+  } else {
+    // remove last element in array
+    stringArray.pop()
+    // remove first element in array
+    stringArray.shift()
+    return stringArray.join('')
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
 
@@ -175,7 +245,17 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-function charCount(string) {}
+function charCount(string) {
+  let obj = {}
+  for (let i = 0; i < string.length; i++) {
+    let char = string[i]
+    if (obj[char] === undefined) {
+      obj[char] = 0
+    }
+    obj[char]++
+  }
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
 
@@ -197,7 +277,11 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
-function formatWithPadding(n, char, length) {}
+function formatWithPadding(n, char, length) {
+  // converts int to string, gets length value of string
+  let str = n.toString()
+  return str.padStart(length, char)
+}
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -205,7 +289,8 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function called isPalindrome that accepts a single string argument, then returns true or false depending upon whether or not the string is a palindrome.
+- Write a function called isPalindrome that accepts a single string argument, 
+  then returns true or false depending upon whether or not the string is a palindrome.
 - A palindrome is a word or phrase that is the same forward or backward.
 - Casing and spaces are not included when considering whether or not a string is a palindrome.
 - If the length of the string is 0 or 1, return true.
@@ -218,7 +303,17 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-function isPalindrome(string) {}
+function isPalindrome(string) {
+  let newString = /[^A-Za-z0-9]/g
+  string = string.toLowerCase().replace(newString, '')
+  let len = string.length
+  for (let i = 0; i < len / 2; i++) {
+    if (string[i] !== string[len - 1 - i]) {
+      return false
+    }
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
 
@@ -226,10 +321,12 @@ Difficulty: Intermediate
 
 Prompt:
 
-In information theory, the hamming distance refers to the count of the differences between two strings of equal length.  It is used in computer science for such things as implementing "fuzzy search"  capability.
+In information theory, the hamming distance refers to the count of the differences between two strings of equal length.  
+It is used in computer science for such things as implementing "fuzzy search"  capability.
 
 - Write a function named hammingDistance that accepts two arguments which are both strings of equal length.
-- The function should return the count of the symbols (characters, numbers, etc.) at the same position within each string that are different.
+- The function should return the count of the symbols (characters, numbers, etc.) 
+  at the same position within each string that are different.
 - If the strings are not of the same length, the function should return NaN.
 
 Examples:
@@ -240,7 +337,20 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
-function hammingDistance(str1, str2) {}
+function hammingDistance(str1, str2) {
+  let len1 = str1.length
+  let len2 = str2.length
+  if (len1 !== len2) {
+    return NaN
+  }
+  let dist = 0
+  for (let i = 0; i < str1.length; i += 1) {
+    if (str1[i] !== str2[i]) {
+      dist += 1
+    }
+  }
+  return dist
+}
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
@@ -249,7 +359,9 @@ Difficulty: Intermediate
 Prompt:
 
 - Write a function called mumble that accepts a single string argument.
-- The function should return a string that has each character repeated the number of times according to its position within the string arg.  In addition, each repeated section of characters should be separated by a hyphen (-).
+- The function should return a string that has each character repeated 
+  the number of times according to its position within the string arg.  
+  In addition, each repeated section of characters should be separated by a hyphen (-).
 - Examples describe it best..
 
 Examples:
@@ -260,7 +372,13 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
-function mumble(string) {}
+function mumble(string) {
+  let result = ''
+  for (let i = 0; i < string.length; i++) {
+    result += ((i || '') && '-') + string.charAt(i).repeat(i + 1)
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -269,7 +387,8 @@ Difficulty: Intermediate
 Prompt:
 
 - Write a function named fromPairs that creates an object from an array containing nested arrays.
-- Each nested array will have two elements representing key/value pairs used to create key/value pairs in an object to be returned by the function.
+- Each nested array will have two elements representing key/value pairs 
+  used to create key/value pairs in an object to be returned by the function.
 - If a key appears in multiple pairs, the rightmost pair should overwrite the previous entry in the object.
 
 Examples:
@@ -278,7 +397,13 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-function fromPairs(arr) {}
+function fromPairs(arr) {
+  let obj = {}
+  arr.forEach(function (value) {
+    obj[value[0]] = value[1]
+  })
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -286,8 +411,14 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named mergeObjects that accepts at least two objects as arguments, merges the properties of the second through n objects into the first object, then finally returns the first object.
-- If any objects have the same property key, values from the object(s) later in the arguments list should overwrite earlier values.
+- Write a function named mergeObjects that 
+accepts at least two objects as arguments, 
+merges the properties of the second 
+through n objects into the first object, 
+then finally returns the first object.
+- If any objects have the same property key, 
+values from the object(s) later in the arguments 
+list should overwrite earlier values.
 
 Examples:
 
@@ -296,7 +427,10 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-function mergeObjects(obj1, obj2) {}
+function mergeObjects(obj1, obj2) {
+  let newObj2 = { ...obj2 }
+  return Object.assign(obj1, newObj2)
+}
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
 
@@ -304,10 +438,14 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named findHighestPriced that accepts a single array of objects.
-- The objects contained in the array are guaranteed to have a price property holding a numeric value.
-- The function should return the object in the array that has the largest value held in the price property.
-- If there's a tie between two or more objects, return the first of those objects in the array.
+- Write a function named findHighestPriced that 
+  accepts a single array of objects.
+- The objects contained in the array are guaranteed to have a price 
+  property holding a numeric value.
+- The function should return the object in the array 
+  that has the largest value held in the price property.
+- If there's a tie between two or more objects, 
+  return the first of those objects in the array.
 - Return the original object, not a copy.
 - Do not mutate the array being passed in.
 
@@ -330,7 +468,17 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
-function findHighestPriced(arr) {}
+function findHighestPriced(arr) {
+  let maxPrice = 0
+  let obj = null
+  arr.forEach(function (item) {
+    if (item.price > maxPrice) {
+      maxPrice = item.price
+      obj = item
+    }
+  })
+  return obj
+}
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
@@ -342,7 +490,11 @@ The goal is of this challenge is to write a function that performs the functiona
 
 - Write a function named mapArray that accepts two arguments: a single array and a callback function.
 - The mapArray function should return a new array of the same length as the array argument.
-- The mapArray function should iterate over each element in the array (first arg).  For each iteration, invoke the callback function (2nd arg), passing to it as arguments, the current element and its index.  Whatever is returned by the callback function should be included in the new array at the index of the current iteration.
+- The mapArray function should iterate over each element in the array (first arg). 
+  For each iteration, invoke the callback function (2nd arg), 
+  passing to it as arguments, the current element and its index.  
+  Whatever is returned by the callback function should be included 
+  in the new array at the index of the current iteration.
 
 Examples:
 
@@ -357,7 +509,16 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
-function mapArray(arr, cb) {}
+function mapArray(arr, cb) {
+  // create new array
+  let newArr = []
+  // iterrate through array, push into newarray the callback function value the element being the new value
+  // and keeping its index according it its index position.
+  arr.forEach(function (element, index) {
+    newArr.push(cb(element, index))
+  })
+  return newArr
+}
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
@@ -365,12 +526,25 @@ Difficulty:  Intermediate
 
 Prompt:
 
-The goal is of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
+The goal is of this challenge is to write a function that performs the functionality of JavaScript's 
+Array.prototype.reduce method.
 
-- Write a function named reduceArray that accepts three arguments: (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
+- Write a function named reduceArray that accepts three arguments: 
+  (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
+
 - The reduceArray function should return whatever is returned by the callback function on the last iteration.
-- The reduceArray function should iterate over each element in the array (first arg).  For each iteration, invoke the callback function (2nd arg), passing to it three arguments: (1) the "accumulator", which is the value returned by the callback during the previous iteration; (2) the  current element; and (3) the index of the current iteration.
-- On the first iteration, provide the third argument provided to reduceArray as the first argument when invoking the callback, then for subsequent iterations, provide the value returned by the callback during the previous iteration.
+
+- The reduceArray function should iterate over each element in the array (first arg). 
+  For each iteration, invoke the callback function (2nd arg),
+  passing to it three arguments: (1) the "accumulator", 
+  which is the value returned by the callback during the previous iteration; 
+  (2) the  current element; and (3) the index of the current iteration.
+
+- On the first iteration, provide the third argument 
+  provided to reduceArray as the first argument when 
+  invoking the callback, then for subsequent iterations, 
+  provide the value returned by the callback during the 
+  previous iteration.
 
 Examples:
 
@@ -391,7 +565,17 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  let newValue = value
+  arr.forEach(function (element, index) {
+    newValue = acc(newValue, element, index)
+  })
+  return newValue
+  // arr is array
+  // acc = function
+  // value = initial value of accumulator
+}
+
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -399,15 +583,18 @@ Difficulty:  Intermediate
 
 Prompt:
 
-- Write a function named flatten that accepts a single array that may contain nested arrays and returns a new "flattened" array.
+- Write a function named flatten that accepts a single array 
+  that may contain nested arrays and returns a new "flattened" array.
 - A flattened array is an array that contains no nested arrays.
 - Arrays maybe nested at any level.
-- If any of the arrays have duplicate values those duplicate values should be present in the returned array.
+- If any of the arrays have duplicate values 
+  those duplicate values should be present in the returned array.
 - The values in the new array should maintain their ordering as shown in the examples below.
 
 Hint:
 
-- This assignment provides an excellent opportunity to use recursion (a function that calls itself).  It can also be solved by using an inner function.
+- This assignment provides an excellent opportunity to use recursion 
+ (a function that calls itself).  It can also be solved by using an inner function.
 
 Examples:
 
@@ -418,7 +605,9 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  return arr.flat(Infinity)
+}
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -426,7 +615,9 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function named isPrime that returns true when the integer argument passed to it is a prime number and false when the argument passed to it is not prime.
+- Write a function named isPrime that returns 
+  true when the integer argument passed to it is a prime number 
+  and false when the argument passed to it is not prime.
 - A prime number is a whole number (integer) greater than 1 that is evenly divisible by only itself.
 
 Examples:
@@ -438,7 +629,20 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n <= 1) return false
+  if (n === 2) return true
+
+  let newNumber = Math.sqrt(n)
+
+  for (let i = 2; i <= newNumber; i++) {
+    if (n % i === 0) return false
+  }
+  if (n % 1) {
+    return false
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
@@ -446,10 +650,15 @@ Difficulty: Intermediate
 
 Prompt:
 
-Now that you have solved the last challenge of determining if a whole number is prime, let's expand upon that concept to...
-- Write a function named primeFactors that accepts a whole number greater than one (1) as an argument and returns an array of that argument's prime factors.
-- The prime factors of a whole number are the prime numbers that, when multiplied together, equals the whole number.
-- If the argument provided is not greater than 1, or not a whole number, then primeFactors should return an empty array.
+Now that you have solved the last challenge of determining if a whole number is prime, 
+let's expand upon that concept to...
+- Write a function named primeFactors that 
+accepts a whole number greater than one (1) as an argument and 
+returns an array of that argument's prime factors.
+- The prime factors of a whole number are the prime numbers that, 
+when multiplied together, equals the whole number.
+- If the argument provided is not greater than 1, or not a whole number, 
+then primeFactors should return an empty array.
 
 Examples:
 
@@ -462,7 +671,12 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
-function primeFactors(n) {}
+function primeFactors(n) {
+  let factors = []
+  if (n < 2 || !Number.isInteger(n)) {
+    return factors
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -470,7 +684,8 @@ Difficulty: Intermediate
 
 Prompt:
 
-- Write a function named intersection that accepts two arguments which are both arrays.  The array arguments may contain any mixture of strings, numbers and/or booleans - but no reference types, i.e., objects.
+- Write a function named intersection that accepts two arguments which are both arrays.  
+  The array arguments may contain any mixture of strings, numbers and/or booleans - but no reference types, i.e., objects.
 - The function should return a new array containing all elements in common, including repeating element values.
 - The ordering of the elements in the returned is not important.
 - If there are no elements in the arrays in common,  the intersection function should return an empty array.
@@ -483,7 +698,16 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let result = []
+
+  let newArr2 = [...arr2]
+  arr1.forEach((val) => {
+    let idx = newArr2.indexOf(val)
+    if (idx > -1) result.push(newArr2.splice(idx, 1)[0])
+  })
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
@@ -505,7 +729,21 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-function balancedBrackets(string) {}
+function balancedBrackets(string) {
+  if (string.length % 2) return false
+  let stack = []
+  for (var i = 0; i < string.length; i++) {
+    const b = string.charAt(i)
+    if ('([{'.includes(b)) {
+      // add opening brackets to the stack
+      stack.push(b)
+    } else {
+      // not an opening bracket, so remove last opening and check if matched
+      if (!'() {} []'.includes(stack.pop() + b)) return false
+    }
+  }
+  return true
+}
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
@@ -531,7 +769,17 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  let winner = true
+  for (let i = 0; i < arr.length; i++) {
+    let charFromNumber = String.fromCharCode(arr[i][1])
+    if (!arr[i][0].includes(charFromNumber)) {
+      winner = false
+      break
+    }
+  }
+  return winner
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -557,7 +805,14 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-function getNumForIP(bits) {}
+function getNumForIP(bits) {
+  let chunks = bits.split('.').reverse()
+  let sum = 0
+  chunks.forEach(function (chunk, idx) {
+    sum += parseInt(chunk) * 256 ** idx
+  })
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -582,7 +837,11 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  return string.replace(/[_-]\w/g, function (match) {
+    return match.charAt(1).toUpperCase()
+  })
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
@@ -608,7 +867,12 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  return n
+    .toString(2)
+    .split('')
+    .filter((bit) => bit === '1').length
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
