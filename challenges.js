@@ -898,7 +898,7 @@ countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
 function countTheBits(n) {
-  return int.toString(2).split("").filter((bit) => bit === "1").length
+  return n.toString(2).split("").filter((bit) => bit === "1").length
 }
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
@@ -964,7 +964,17 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
-function addChecker(arr, n) {}
+function addChecker(arr, n) {
+  let res = false
+  let start = 0
+  let end = arr.length - 1
+  while (start < end) {
+    let sum = arr[start] + arr[end]
+    if (sum === n) return true
+    sum < n ? start++ :end--
+  }
+  return res
+}
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
 
@@ -992,7 +1002,21 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-function totalTaskTime(arr, n) {}
+function totalTaskTime(arr, n) {
+    let time = 0,
+    shortest,
+    threads
+  while (arr.length > n) {
+    threads = arr.splice(0, n)
+    shortest = Math.min(...threads)
+    time += shortest
+    threads = threads.map((t) => t - shortest).filter((t) => t)
+    arr = threads.concat(arr)
+  }
+  return time + (arr.length ? Math.max(...arr) : 0)
+
+  // return arr.length && Math.max(...arr.reduce((b, t, i) => (b[b.indexOf(Math.min(...b))] += t) && b, arr.splice(0, n)))
+}
 
 /*-----------------------------------------------------------------*/
 module.exports = {
