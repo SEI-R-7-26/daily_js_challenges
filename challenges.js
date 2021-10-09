@@ -897,7 +897,9 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  return int.toString(2).split("").filter((bit) => bit === "1").length
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
@@ -921,7 +923,22 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  let result = [arr[0], arr[1]]
+  const bank = { U: [0, 1], R: [1, 1], D: [0, -1], L: [1, -1] }
+  let index = 0
+  while (index < string.length) {
+    let direction = string[index]
+    index++
+    let numString = ''
+    while("0123456789".includes(string[index]) && index < string.length) {
+      numString += string[index]
+      index++
+    }
+    result[bank[direction][0]] += numString * bank[direction][1]
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
