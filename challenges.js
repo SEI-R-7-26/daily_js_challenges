@@ -867,9 +867,7 @@ function toCamelCase(string) {
   let answer = [arr[0]]
   for (let i = 1; i < arr.length; i++) {
     let arr2 = arr[i].split('')
-    arr2.reverse()
-    arr2[arr2.length - 1] = arr2[arr2.length - 1].toUpperCase()
-    arr2.reverse()
+    arr2[0] = arr2[0].toUpperCase()
     let toUpper = arr2.join('')
     answer.push(toUpper)
   }
@@ -900,7 +898,12 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
-function countTheBits(n) {}
+function countTheBits(n) {
+  let arr = n.toString(2)
+  arr = arr.split('')
+  arr = arr.filter((num) => num === '1')
+  return arr.length
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
@@ -924,7 +927,35 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-function gridTrip(arr, string) {}
+function gridTrip(arr, string) {
+  let answer = arr
+  let arr2 = string.split('')
+  let direction = [arr2[0], '']
+  for (let i = 1; i <= arr2.length; i++) {
+    if (Number.isNaN(parseInt(arr2[i])) || i === arr2.length) {
+      switch (direction[0]) {
+        case 'U':
+          answer[0] += parseInt(direction[1])
+          break
+        case 'D':
+          answer[0] -= parseInt(direction[1])
+          break
+        case 'L':
+          answer[1] -= parseInt(direction[1])
+          break
+        case 'R':
+          answer[1] += parseInt(direction[1])
+          break
+        default:
+          console.log('error')
+      }
+      direction = [arr2[i], '']
+    } else {
+      direction[1] += arr2[i]
+    }
+  }
+  return answer
+}
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
