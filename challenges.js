@@ -374,7 +374,6 @@ function mumble(string) {
 
     for (let j = -1; j < i; j++) {
       answer = answer.concat(string[i])
-      console.log(answer)
     }
   }
   return answer
@@ -466,7 +465,15 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
-function findHighestPriced(arr) {}
+function findHighestPriced(arr) {
+  let highest = 0
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i].price > arr[highest].price) {
+      highest = i
+    }
+  }
+  return arr[highest]
+}
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
@@ -493,7 +500,14 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
-function mapArray(arr, cb) {}
+function mapArray(arr, cb) {
+  result = []
+  for (let i = 0; i < arr.length; i++) {
+    let item = cb(arr[i], i)
+    result.push(item)
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
@@ -527,7 +541,14 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
-function reduceArray(arr, acc, value) {}
+function reduceArray(arr, acc, value) {
+  let result = null
+  for (let i = 0; i < arr.length; i++) {
+    let each = acc(value, arr[i], i)
+    result += each
+  }
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -554,7 +575,17 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
-function flatten(arr) {}
+function flatten(arr) {
+  let result = []
+  arr.forEach(function (e) {
+    if (Array.isArray(e)) {
+      result = result.concat(flatten(e))
+    } else {
+      result.push(e)
+    }
+  })
+  return result
+}
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -574,7 +605,19 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-function isPrime(n) {}
+function isPrime(n) {
+  if (n > 1 && Number.isInteger(n)) {
+    if (n == 2) {
+      return true
+    }
+    for (let i = 2; i < n; i++) {
+      if (n % i === 0) {
+        return false
+      }
+    }
+    return true
+  } else return false
+}
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
@@ -619,7 +662,9 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-function intersection(arr1, arr2) {}
+function intersection(arr1, arr2) {
+  let result = []
+}
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
 
