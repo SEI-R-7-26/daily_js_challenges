@@ -625,18 +625,21 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 function primeFactors(n) {
-  // let factors = []
-  // let startingPrime = 2
-  // if (n > 1 && Number.isInteger(n)) {
-  //   while (startingPrime >= 2) {}
-  //   for (let i = 2; i <= n; i++) {
-  //     if (Number.isInteger(n / i) && isPrime(i)) {
-  //       factors.push(i)
-  //     }
-  //   }
-  // }
-  // console.log('factors :>> ', factors)
-  // return factors
+  let factors = []
+  if (n < 2 || !Number.isInteger(n)) return factors
+  
+  let prime = 2
+  while (!isPrime(n)) {
+    if (Number.isInteger(n / prime)) {
+      factors.push(prime)
+      n = n / prime
+    } else {
+      prime++
+      while (!isPrime(prime)) prime++
+    }
+  }
+  factors.push(n)
+  return factors
 }
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
@@ -737,7 +740,16 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
-function isWinningTicket(arr) {}
+function isWinningTicket(arr) {
+  let winner = arr.every((ticket)=>{
+    if (ticket[0].includes(String.fromCharCode(ticket[1]))){
+      return true      
+    } else {
+      return false
+    }
+  })
+  return winner
+}
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -944,7 +956,20 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-function totalTaskTime(arr, n) {}
+function totalTaskTime(arr, n) {
+  let time = 0
+  let tasks = [...arr]
+  let shortest
+  let threads
+  while (tasks.length > n) {
+    threads = tasks.splice(0, n)
+    shortest = Math.min(...threads)
+    time += shortest
+    threads = threads.map((t) => t - shortest).filter((t) => t)
+    tasks = threads.concat(tasks)
+  }
+  return time + (tasks.length ? Math.max(...tasks) : 0)
+}
 
 /*-----------------------------------------------------------------*/
 module.exports = {
