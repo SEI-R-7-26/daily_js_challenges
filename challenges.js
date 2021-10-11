@@ -740,7 +740,14 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-function getNumForIP(bits) {}
+function getNumForIP(bits) {
+  let chunks = bits.split('.').reverse()
+  let sum = 0
+  chunks.forEach((chunk, index) => {
+    sum += parseInt(chunk) * 256 ** index
+  })
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -765,7 +772,11 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-function toCamelCase(string) {}
+function toCamelCase(string) {
+  return string.replace(/[_-]\w/g, (match) => {
+    return match.charAt(1).toUpperCase
+  })
+}
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
